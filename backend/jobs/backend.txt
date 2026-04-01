@@ -1,0 +1,13 @@
+We are looking for a Backend Developer with strong experience in Python and REST APIs.
+The candidate should be familiar with database systems such as PostgreSQL or MySQL.
+Experience with Docker and cloud platforms like AWS is a plus.
+
+Responsibilities:
+- Build scalable backend services
+- Design APIs
+- Optimize database queries
+
+Requirements:
+- Strong Python skills
+- Experience with SQL databases
+- Understanding of system design

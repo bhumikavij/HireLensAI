@@ -1,0 +1,12 @@
+We are hiring a Data Scientist with experience in machine learning, data analysis, and Python.
+
+Responsibilities:
+- Build predictive models
+- Perform data cleaning and analysis
+- Work with large datasets
+
+Requirements:
+- Strong knowledge of machine learning algorithms
+- Experience with Python (NumPy, Pandas, Scikit-learn)
+- Knowledge of SQL
+- Data visualization skills

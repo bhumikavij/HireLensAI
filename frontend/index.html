@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hireless AI — Resume Analyzer</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="header-badge">AI-Powered · Resume Analysis</div>
+    <h1>Hireless <span>AI</span></h1>
+    <p>Analyze how well your resume fits a job description</p>
+  </header>
+
+  <div class="card input-card"></div>
+    <div class="section-label">Input</div>
+    <div class="input-row">
+
+    <div>
+    <div class="input-sublabel">📄 Resume (PDF)</div>
+
+    <label class="upload-zone" id="uploadZone">
+    <input type="file" id="resumeFile" accept=".pdf">
+
+    <div class="upload-icon">📎</div>
+    <div class="upload-primary">Drop PDF or click to browse</div>
+    <div class="upload-secondary">PDF files only</div>
+    <div class="file-chosen" id="fileName"></div>
+    </label>
+    </div>
+      </div>
+      <div>
+        <label for="jobDesc">Job Description</label>
+        <textarea id="jobDesc" placeholder="Paste the full job description here — requirements, responsibilities, skills…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-wrap">
+    <button class="btn-analyze" id="analyzeBtn" >
+      <span>⚡</span> Analyze Resume
+    </button>
+  </div>
+
+  <div class="loader" id="loader"><div class="spin"></div> Analyzing your resume…</div>
+  <div class="error-box" id="errorBox"></div>
+
+  <!-- Empty state shown before first analysis -->
+  <div id="emptyState" class="empty-state-msg">
+    <div class="empty-icon">📋</div>
+    <div>Upload a resume and analyze to see results</div>
+  </div>
+
+  <div id="results">
+    <div class="results-heading">Analysis Results</div>
+
+    <!-- 1. Score -->
+    <div class="score-hero">
+      <div class="score-ring">
+        <svg viewBox="0 0 140 140">
+          <circle class="ring-bg" cx="70" cy="70" r="62"/>
+          <circle class="ring-fg" id="ringFg" cx="70" cy="70" r="62"/>
+        </svg>
+        <div class="score-inner">
+          <div class="score-num" id="scoreNum">—</div>
+          <div class="score-pct">/ 100</div>
+        </div>
+      </div>
+      <div class="score-verdict" id="scoreVerdict"></div>
+      <div class="score-sub"     id="scoreSub"></div>
+      <div id="strengthBars"></div>
+    </div>
+
+    <!-- 2. Skills -->
+    <div class="skills-grid">
+      <div class="skill-col matched">
+        <div class="skill-col-header">
+          <div class="skill-dot"></div>
+          <div class="skill-col-title">Matched Skills</div>
+          <div class="skill-count" id="matchedCount">0</div>
+        </div>
+        <div class="skill-tags" id="matchedSkills"></div>
+      </div>
+      <div class="skill-col missing">
+        <div class="skill-col-header">
+          <div class="skill-dot"></div>
+          <div class="skill-col-title">Missing Skills</div>
+          <div class="skill-count" id="missingCount">0</div>
+        </div>
+        <div class="skill-tags" id="missingSkills"></div>
+      </div>
+    </div>
+
+    <!-- 3. Feedback -->
+    <div class="list-card feedback">
+      <div class="list-header">
+        <div class="list-icon">💬</div>
+        <div class="list-title">Feedback</div>
+      </div>
+      <ul class="item-list" id="feedbackList"></ul>
+    </div>
+
+    <!-- 4. Top Improvements -->
+    <div class="list-card improve">
+      <div class="list-header">
+        <div class="list-icon">🚀</div>
+        <div class="list-title">Top Improvements</div>
+      </div>
+      <ul class="item-list" id="improvementsList"></ul>
+    </div>
+  </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

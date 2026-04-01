@@ -1,0 +1,12 @@
+Looking for a Frontend Developer skilled in React, JavaScript, and modern web technologies.
+
+Responsibilities:
+- Build responsive UI components
+- Optimize user experience
+- Work with REST APIs
+
+Requirements:
+- Strong knowledge of JavaScript
+- Experience with React
+- Understanding of HTML and CSS
+- Familiarity with version control (Git)
