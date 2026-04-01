@@ -88,7 +88,7 @@ def compute_scores(job_clean, resume_text, job_skills, skills_list):
         for sentence in filtered_sentences:
             emb1 = model.encode([ f"{skill} development experience", f"working with {skill}", f"{skill} project implementation"])
             emb2 = model.encode([sentence])
-            sim = cosine_similarity(emb1, emb2)[0][0]
+            sim = max(cosine_similarity(emb1, emb2).flatten())
 
             if any(word in sentence.lower() for word in strong_words):
                 sim += 0.08
@@ -114,7 +114,7 @@ def compute_scores(job_clean, resume_text, job_skills, skills_list):
         (cosine_similarity(job_embedding, resume_embedding)[0][0] + 1) / 2
     )
 
-    final_score = 0.9 * weighted_score + 0.1 * semantic_score
+    final_score = 0.85 * weighted_score + 0.15 * semantic_score
 
     matched = list(skill_map.keys() & job_skills)
     missing = list(job_skills - skill_map.keys())
