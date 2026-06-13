@@ -1,7 +1,7 @@
 from collections import Counter, defaultdict
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-from utils.cleaner import clean_text
+from backend.utils.cleaner import clean_text
 import re
 
 model = SentenceTransformer('all-MiniLM-L6-v2')

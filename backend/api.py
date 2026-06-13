@@ -4,9 +4,9 @@ import shutil
 import os
 import uuid
 import logging
-from utils.parser import extract_text_from_pdf
-from utils.cleaner import clean_text
-from utils.scorer import compute_scores, generate_feedback
+from backend.utils.parser import extract_text_from_pdf
+from backend.utils.cleaner import clean_text
+from backend.utils.scorer import compute_scores, generate_feedback
 from fastapi.middleware.cors import CORSMiddleware
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
