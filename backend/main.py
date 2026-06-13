@@ -1,8 +1,8 @@
 import os
-from utils.parser import extract_text_from_pdf
-from utils.cleaner import clean_text
-from utils.scorer import compute_scores, generate_feedback , generate_top_improvements
-from utils.roadmap import roadmap
+from backend.utils.parser import extract_text_from_pdf
+from backend.utils.cleaner import clean_text
+from backend.utils.scorer import compute_scores, generate_feedback , generate_top_improvements
+from backend.utils.roadmap import roadmap
 
 resume_folder = "data/"
 
