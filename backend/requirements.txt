@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sentence-transformers
+scikit-learn
+python-multipart
+torch
+numpy
+PyMuPDF
+huggingface_hub
+transformers
+sentencepiece

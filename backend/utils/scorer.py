@@ -105,7 +105,7 @@ def compute_scores(job_clean, resume_text, job_skills, skills_list):
         score += weight * best_score
 
     weighted_score = float(score / total)
-    weighted_score = weighted_score ** 0.7
+    weighted_score = weighted_score ** 0.5
 
     job_embedding = model.encode([job_clean])
     resume_embedding = model.encode([" ".join(sentences)])
@@ -114,7 +114,7 @@ def compute_scores(job_clean, resume_text, job_skills, skills_list):
         (cosine_similarity(job_embedding, resume_embedding)[0][0] + 1) / 2
     )
 
-    final_score = 0.85 * weighted_score + 0.15 * semantic_score
+    final_score = 0.75 * weighted_score + 0.25 * semantic_score
 
     matched = list(skill_map.keys() & job_skills)
     missing = list(job_skills - skill_map.keys())

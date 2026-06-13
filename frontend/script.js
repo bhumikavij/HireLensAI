@@ -87,21 +87,35 @@ function renderResults(data) {
 }
 
 async function analyze() {
-  const file    = resumeFile.files[0];
+  console.log("ANALYZE STARTED");
+
+  const file = resumeFile.files[0];
   const jobDesc = document.getElementById('jobDesc').value.trim();
-  const btn     = document.getElementById('analyzeBtn');
-  const loader  = document.getElementById('loader');
-  const errBox  = document.getElementById('errorBox');
+  const btn = document.getElementById('analyzeBtn');
+  const loader = document.getElementById('loader');
+  const errBox = document.getElementById('errorBox');
   const results = document.getElementById('results');
 
   errBox.classList.remove('on');
   results.classList.remove('on');
 
-  if (!file)    { showError('Please upload a PDF resume first.'); return; }
-  if (!jobDesc) { showError('Please paste a job description.'); return; }
+  if (!file) {
+    showError('Please upload a PDF resume first.');
+    return;
+  }
+
+  if (!jobDesc) {
+    showError('Please paste a job description.');
+    return;
+  }
+
+  console.log("FILE:", file);
+  console.log("JOB DESC:", jobDesc);
 
   btn.disabled = true;
-  btn.innerHTML = '<div class="spin" style="border-top-color:#fff"></div> Analyzing…';
+  btn.innerHTML =
+    '<div class="spin" style="border-top-color:#fff"></div> Analyzing…';
+
   loader.classList.add('on');
 
   try {
@@ -109,36 +123,46 @@ async function analyze() {
     fd.append('file', file);
     fd.append('job_desc', jobDesc);
 
-    const res = await fetch(API_URL, { method:'POST', body:fd });
+    console.log("Sending request to:", API_URL);
+
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      body: fd
+    });
+
+    console.log("RESPONSE:", res);
+
+    const data = await res.json();
+    console.log("DATA:", data);
 
     if (!res.ok) {
-      let msg = `Server error ${res.status}: ${res.statusText}`;
-      try {
-        const e = await res.json();
-        if (e.error) msg = e.error;
-        else if (e.detail) msg = e.detail;
-      } catch(_) {}
+      let msg =
+        data.error ||
+        data.detail ||
+        `Server error ${res.status}`;
       throw new Error(msg);
     }
 
-    renderResults(await res.json());
+    renderResults(data);
 
   } catch (err) {
+    console.error("ERROR:", err);
+
     showError(
       err.name === 'TypeError'
-        ? `Could not connect to ${API_URL}. Make sure your FastAPI backend is running.`
+        ? `Could not connect to ${API_URL}. Make sure FastAPI is running.`
         : 'Failed to analyze resume. ' + (err.message || 'Try again.')
     );
+
   } finally {
     btn.disabled = false;
     btn.innerHTML = '<span>⚡</span> Analyze Resume';
     loader.classList.remove('on');
   }
 }
-
 function showError(msg) {
   const el = document.getElementById('errorBox');
   el.textContent = '⚠ ' + msg;
   el.classList.add('on');
 }
-})
+});
